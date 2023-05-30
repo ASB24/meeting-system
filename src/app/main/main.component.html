@@ -1,0 +1,144 @@
+<div class="loading" *ngIf="loading">
+  <mat-spinner color="primary"></mat-spinner>
+</div>
+<div id="wave1"></div>
+
+
+<!--Inicio-->
+<ng-template [ngIf]="inicio">
+  <div class="main-container">
+    <div class="sub-container">
+      <div class="row">
+        <h1><strong>Sistema de Reuniones</strong></h1>
+        <div class="col-12">
+          <h3 style="margin-bottom: 2% !important; font-size: medium;">{{reunion.data.tema}}</h3>
+          <p><strong>Fecha</strong></p>
+          <p>{{reunion.data.fecha}}</p>
+          <p><strong>Hora</strong></p>
+          <p style="display: inline;">{{reunion.data.desde}}</p> - <p style="display: inline;">{{reunion.data.hasta}}
+          </p>
+          <div class="col-lg-12" style="margin-top: 2% !important;">
+            <button [disabled]="found === false" class="btn btn-lg btn-primary btnregister"
+              (click)="lobbyButton()">Registrarme</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Formulario -->
+<ng-template [ngIf]="formulario">
+  <div class="main-container">
+    <div class="sub-container">
+      <div class="row">
+        <div class="col-12">
+          <h1 id="formTitle"><strong>Sistema de Reuniones</strong></h1>
+        </div>
+        <form class="formPersona" [formGroup]="myForm" (ngSubmit)="getValues()">
+          <div class="col">
+
+            <div class=" selectDoc input-group-lg">
+              <select (change)="changeInput($event)" readonly="!state" formControlName="tipoDocumento"
+                class="form-select form-control" id="selectSex">
+                <option style="color: grey !important;" value="" selected>Tipo de documento</option>
+                <option style="color: grey !important;" value="c">Cédula</option>
+                <option style="color: grey !important;" value="p">Pasaporte</option>
+              </select>
+              <span class="error text-danger d-block"
+                *ngIf="tipoDocumento?.invalid && tipoDocumento?.touched">Requerido</span>
+            </div>
+
+
+            <div *ngIf="inputChange" class="form-group input-group-lg">
+              <input id="documento" (focusout)="searchParticipante()" type="text" class="form-control"
+                formControlName="documento" placeholder="Cédula">
+              <span class="error text-danger d-block" *ngIf="documento?.invalid && documento?.touched">Este campo es
+                requerido</span>
+            </div>
+
+
+            <div *ngIf="!inputChange" class="form-group input-group-lg">
+              <input type="text" (focusout)="searchParticipante()" formControlName="documento" class="form-control"
+                placeholder="Pasaporte">
+              <span class="error text-danger d-block" *ngIf="documento?.invalid && documento?.touched">Este campo es
+                requerido</span>
+            </div>
+
+
+            <div class=" form-group input-group-lg">
+              <input type="text" id="name" class="form-control" formControlName="nombres" placeholder="Nombre Completo">
+              <span class="error text-danger d-block" *ngIf="nombres?.invalid && nombres?.touched">Este campo es
+                requerido</span>
+            </div>
+
+            <div class="form-group input-group-lg">
+              <input type="text" formControlName="cargo" class="form-control" placeholder="Cargo">
+              <span class="error text-danger d-block" *ngIf="cargo?.invalid && cargo?.touched">Este campo es
+                requerido</span>
+            </div>
+
+            <div class="form-group input-group-lg">
+              <input type="text" formControlName="institucion" class="form-control" placeholder="Institucion">
+              <span class="error text-danger d-block" *ngIf="institucion?.invalid && institucion?.touched">Este campo es
+                requerido</span>
+            </div>
+
+            <div class="form-group input-group-lg">
+              <input type="email" formControlName="email" class="form-control" placeholder="Correo Electronico">
+              <span class="error text-danger d-block" *ngIf="email?.invalid && email?.touched">Este campo es requerido
+                verifique</span>
+            </div>
+            <div>
+              <div>
+                <div class="telefono input-group-lg">
+                  <input formControlName="telefono" id="telefono" matInput mask="(000)000-0000" type="tel"
+                    class="form-control" placeholder="Telefono">
+                  <span class="error text-danger d-block" *ngIf="telefono?.invalid && telefono?.touched">Este campo es
+                    requerido verifique</span>
+                </div>
+                <div class=" select input-group-lg">
+                  <select placeholder="Sexo" formControlName="sexo" class="form-select form-control" id="selectSex">
+                    <option value="" selected>Sexo</option>
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                    <option value="N/A">No especificar</option>
+                  </select>
+                  <span class="error text-danger d-block" *ngIf="sexo?.invalid && sexo?.touched">Requerido</span>
+                </div>
+              </div>
+            </div>
+            <button [disabled]="myForm.invalid" class="btn btn-lg btn-primary btnregisterPerson"
+              type="submit">Registrarme</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="gracias">
+  <div class="main-container">
+    <div class="sub-container">
+      <div class="row">
+        <h1><strong>Sistema de Reuniones</strong></h1>
+        <h4>Gracias por registrarte!</h4>
+        <img src="../assets/images/goodRequest.png" alt="Good Image" style="width: 20%; margin: 0 auto;">
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="errorReunion">
+  <div class="main-container">
+    <div class="sub-container">
+      <div class="row">
+        <h1> <strong>Sistema de Reuniones</strong> </h1>
+        <h3>Lo sentimos!!</h3>
+        <h4>No hemos podido encontrar la reunión</h4>
+        <img src="../assets/images/request.png" alt="Error Image" style="width: 20%; margin: 0 auto;">
+      </div>
+    </div>
+  </div>
+</ng-template>
+<div id="wave2"></div>
