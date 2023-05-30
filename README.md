@@ -17,7 +17,7 @@ Este proyecto se conecta con el API del back-office del mismo, por medio de los 
 
 - **`getReunion(id_reunion:number)`:** Este metodo recibe como parametro el jwt de la reunion al recibirlo, este hace un GET Request al Back-Office para luego recibir la informacion de la reunion listada en la pantalla principal del componente.
 - **`postEmpleado(id:number,id_reunion:number,body:Object)`:** Este metodo recibe tambien el jwt de la reunion y al mismo tiempo recibe el id del empleado por medio del formulario correspondiente, tambien se manda un body requerido por el Back-Office y manda un POST Request al Back-Office en el cual se conecta con el API del PAI para mandar un status y luego mandar por medio de la interfaz la respuesta recibida por medio del status.
-- **`postPersona(id_reunion:number,body:Participante)`:** Este metodo utiliza el jwt de la reunion y a su vez manda por medio del body la informacion correspondiente a la persona haciendo un POST Request al Back-Office que a su vez se comunica con el API del PAI para luego mandar un status y posteriormente con ese status presentapor medio de la interfaz de usuario la respuesta recibida.
+- **`postPersona(id_reunion:number,body:Participante)`:** Este metodo utiliza el jwt de la reunion y a su vez manda por medio del body la informacion correspondiente a la persona haciendo un POST Request al Back-Office que a su vez se comunica con el API del sistema de gestion de usuarios para luego mandar un status y posteriormente con ese status presentar por medio de la interfaz de usuario la respuesta recibida.
 
 ## Funcionamiento del Front
 
