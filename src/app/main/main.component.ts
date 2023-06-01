@@ -83,13 +83,13 @@ export class MainComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.id_Reunion = params['id'];
       this.persona.reunionId = params['id']
-      this.app.getReunion(this.id_Reunion).subscribe(data => {
-        this.reunion.data.id = data.data.id;
-        this.reunion.data.area = data.data.lugar;
-        this.reunion.data.tema = data.data.tema;
-        this.reunion.data.fecha = data.data.fecha.slice(0, 10);
-        this.reunion.data.hasta = data.data.hasta.slice(11, 16);
-        this.reunion.data.desde = data.data.desde.slice(11, 16);
+      this.app.getReunion(params['id']).subscribe(data => {
+        this.reunion.data.id = data.codigoReunion;
+        this.reunion.data.area = data.lugar;
+        this.reunion.data.tema = data.tema;
+        this.reunion.data.fecha = data.fecha.slice(0, 10);
+        this.reunion.data.hasta = data.hasta.slice(11, 16);
+        this.reunion.data.desde = data.desde.slice(11, 16);
         this.found = true;
         this.loading = false;
       }, error => {
@@ -105,7 +105,7 @@ export class MainComponent implements OnInit {
     let tempTipoDocumento = this.myForm.value.tipoDocumento;
     this.loading = true;
     this.app.getPersonaByDocument(tempDocumento, tempTipoDocumento).subscribe((data) => {
-      const { nombreCompleto, cargo, correoElectronico, institucion, sexo, telefono } = data.data;
+      const { nombreCompleto, cargo, correoElectronico, institucion, sexo, telefono } = data;
       this.myForm.patchValue({ nombres: nombreCompleto, sexo: sexo !== null ? sexo : "", telefono: telefono, institucion: institucion, cargo: cargo, email: correoElectronico });
       this.loading = false;
       this.disable = true;
@@ -146,7 +146,7 @@ export class MainComponent implements OnInit {
       correoElectronico: this.myForm.value.email,
       tipoDocumento: this.myForm.getRawValue().tipoDocumento,
       estatus: true,
-      reunionId: this.persona.reunionId
+      codigoReunion: this.persona.reunionId
     }
 
     this.app.postPersona(tempPerson).subscribe(data => {

@@ -14,16 +14,16 @@ export class AppService {
   private URL: string = environment.apiURL;
 
   getReunion(id_reunion: any) {
-    return this.http.get<Reunion>(this.URL + `Reunion/${id_reunion}`);
+    return this.http.get<any>(this.URL + `reunion/${id_reunion}`);
   }
 
 
 
   postPersona(body: Object): Observable<any> {
-    return this.http.post<Participante>(this.URL + `Participante`, body);
+    return this.http.post<Participante>(this.URL + `participante`, body);
   }
 
   getPersonaByDocument(documento: string, tipoDocumento: string): Observable<any> {
-    return this.http.get<any>(`${this.URL}Participante/GetUserById/${documento}/${tipoDocumento}`);
+    return this.http.get<any>(`${this.URL}participante/GetUserById/${documento}/${tipoDocumento}`);
   }
 }

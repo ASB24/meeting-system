@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiURL: "https://apigateway.ambiente.gob.do/api/sgr/",
+  apiURL: "http://localhost:3030/",
   name: "Sistema de Registro De Reuniones",
   appStartYear: 2022,
   application: {

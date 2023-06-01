@@ -12,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import {MatInputModule} from '@angular/material/input';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
@@ -35,7 +36,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     MatInputModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
